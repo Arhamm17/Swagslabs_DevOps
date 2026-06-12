@@ -1,0 +1,72 @@
+{
+  "validUsers": [
+    {
+      "username": "standard_user",
+      "password": "secret_sauce",
+      "expectedMsg": "Swag Labs"
+    },
+    {
+      "username": "performance_glitch_user",
+      "password": "secret_sauce",
+      "expectedMsg": "Swag Labs"
+    },
+    {
+      "username": "error_user",
+      "password": "secret_sauce",
+      "expectedMsg": "Swag Labs"
+    },
+    {
+      "username": "visual_user",
+      "password": "secret_sauce",
+      "expectedMsg": "Swag Labs"
+    }
+  ],
+
+  "lockedUser": {
+    "username": "locked_out_user",
+    "password": "secret_sauce",
+    "expectedError": "Epic sadface: Sorry, this user has been locked out."
+  },
+
+  "invalidUser": {
+    "username": "invalid_user",
+    "password": "wrong_password",
+    "expectedError": "Epic sadface: Username and password do not match any user in this service"
+  },
+
+  "invalidPassword": {
+    "username": "standard_user",
+    "password": "wrong_password",
+    "expectedError": "Epic sadface: Username and password do not match any user in this service"
+  },
+
+  "emptyUsername": {
+    "username": "",
+    "password": "secret_sauce",
+    "expectedError": "Epic sadface: Username is required"
+  },
+
+  "emptyPassword": {
+    "username": "standard_user",
+    "password": "",
+    "expectedError": "Epic sadface: Password is required"
+  },
+
+  "emptyBoth": {
+    "username": "",
+    "password": "",
+    "expectedError": "Epic sadface: Username is required"
+  },
+
+  "checkoutInfo": {
+    "firstName": "Arham",
+    "lastName": "Tester",
+    "postalCode": "12345"
+  },
+  
+  "invalidCheckout": {
+    "emptyFirstName": { "firstName": "", "lastName": "Tester", "postalCode": "12345", "expectedError": "Error: First Name is required" },
+    "emptyLastName":  { "firstName": "Arham", "lastName": "", "postalCode": "12345", "expectedError": "Error: Last Name is required" },
+    "emptyPostal":    { "firstName": "Arham", "lastName": "Tester", "postalCode": "", "expectedError": "Error: Postal Code is required" }
+  }
+}
