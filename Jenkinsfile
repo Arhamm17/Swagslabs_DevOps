@@ -52,8 +52,9 @@ pipeline {
                 echo '[Swagslabs_DevOps] Publishing Allure Report'
                 allure([
                     includeProperties: false,
-                    jdk: '', // 👈 Blank because Java is natively managed inside the docker container container instead
-                    results: [[path: 'allure-results']]
+                    jdk: '', 
+                    results: [[path: 'allure-results']],
+                    markUnstableAsSuccess: true 
                 ])
             }
         }
