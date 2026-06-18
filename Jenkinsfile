@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        jdk 'java21' // 👈 This matches the exact configuration name from your Jenkins Tools UI
+    }
+
     environment {
         PROJECT_NAME   = 'Swagslabs_DevOps'
         ALLURE_RESULTS = 'allure-results'
@@ -27,7 +31,7 @@ pipeline {
                 echo '[Swagslabs_DevOps] Running Playwright tests'
                 sh '''
                     docker run --rm \
-                        -v $(pwd)/allure-results:/app/allure-results \
+                        -v "${WORKSPACE}/allure-results":/app/allure-results \
                         swagslabs-test-runner \
                         npx playwright test
                 '''
@@ -39,8 +43,8 @@ pipeline {
                 echo '[Swagslabs_DevOps] Generating Allure Report'
                 sh '''
                     docker run --rm \
-                        -v $(pwd)/allure-results:/app/allure-results \
-                        -v $(pwd)/allure-report:/app/allure-report \
+                        -v "${WORKSPACE}/allure-results":/app/allure-results \
+                        -v "${WORKSPACE}/allure-report":/app/allure-report \
                         swagslabs-test-runner \
                         allure generate allure-results --clean -o allure-report
                 '''
@@ -52,7 +56,7 @@ pipeline {
                 echo '[Swagslabs_DevOps] Publishing Allure Report'
                 allure([
                     includeProperties: false,
-                    jdk: '',
+                    jdk: 'java21', // 👈 Applies your configuration context directly to the plugin step
                     results: [[path: 'allure-results']]
                 ])
             }
