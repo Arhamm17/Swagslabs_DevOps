@@ -54,7 +54,6 @@ pipeline {
                     includeProperties: false,
                     jdk: '', 
                     results: [[path: 'allure-results']],
-                    markUnstableAsSuccess: true 
                 ])
             }
         }
