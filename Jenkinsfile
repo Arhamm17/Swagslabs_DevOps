@@ -2,13 +2,17 @@ pipeline {
     agent any
 
     tools {
-        jdk 'java21' // 👈 This matches the exact configuration name from your Jenkins Tools UI
+        jdk 'java21' // Tells Jenkins to prepare the tool context
     }
 
     environment {
         PROJECT_NAME   = 'Swagslabs_DevOps'
         ALLURE_RESULTS = 'allure-results'
         ALLURE_REPORT  = 'allure-report'
+        
+        // 👈 Explicitly forces the environment paths inside the pipeline stages
+        JAVA_HOME      = '/usr/lib/jvm/java-21-openjdk-amd64'
+        PATH           = "${JAVA_HOME}/bin:${env.PATH}"
     }
 
     stages {
@@ -56,7 +60,7 @@ pipeline {
                 echo '[Swagslabs_DevOps] Publishing Allure Report'
                 allure([
                     includeProperties: false,
-                    jdk: 'java21', // 👈 Applies your configuration context directly to the plugin step
+                    jdk: 'java21',
                     results: [[path: 'allure-results']]
                 ])
             }
