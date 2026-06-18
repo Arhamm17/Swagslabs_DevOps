@@ -139,6 +139,33 @@ test.describe('Cart Tests', () => {
     });
   });
 
+  test('TC26 - Verify product name in cart', async ({ page }) => {
+      const loginPage = new LoginPage(page);
+      const inventoryPage = new InventoryPage(page);
+      const cartPage = new CartPage(page);
+      const data = loginData.validUsers[0];
+      let firstProductName;
+  
+      await test.step('Login and add first product', async () => {
+        await loginPage.login(data.username, data.password);
+        await inventoryPage.verifyPageLoaded();
+      });
+  
+      await test.step('Get product name before adding to cart', async () => {
+        const names = await inventoryPage.getProductNames();
+        firstProductName = names[0];
+        await inventoryPage.addFirstProductToCart();
+        await inventoryPage.goToCart();
+      });
+  
+      await test.step('Verify product name is in cart', async () => {
+        await cartPage.verifyCartPageLoaded();
+        await expect(cartPage.cartItemNames.first()).toBeVisible();
+        await attachStepScreenshot(page, '04 - Product name in cart verified');
+      });
+    });
+  
+
   // ── TC27: Verify product price in cart ──
   test('TC27 - Verify product price in cart', async ({ page }) => {
     const loginPage = new LoginPage(page);
