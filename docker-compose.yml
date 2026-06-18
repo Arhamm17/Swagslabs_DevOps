@@ -4,20 +4,15 @@ services:
 
   jenkins:
     image: jenkins/jenkins:lts
-    
     container_name: swagslabs-jenkins
-    
     restart: unless-stopped
-    
     ports:
       - "8080:8080"
       - "50000:50000"
-    
     volumes:
       - swagslabs_jenkins_home:/var/jenkins_home
-      
       - /var/run/docker.sock:/var/run/docker.sock
-    
+      - /usr/bin/docker:/usr/bin/docker
     environment:
       - JAVA_OPTS=-Xmx512m -Xms256m
 
@@ -25,13 +20,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    
     container_name: swagslabs-test-runner
-    
     volumes:
       - ./allure-results:/app/allure-results
       - ./allure-report:/app/allure-report
-    
     profiles:
       - test
 

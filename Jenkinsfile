@@ -61,13 +61,13 @@ pipeline {
 
     post {
         always {
-            echo '===== [Swagslabs_DevOps] Pipeline finished ====='
+            echo '[Swagslabs_DevOps] Pipeline finished'
         }
         success {
-            echo '===== [Swagslabs_DevOps] All tests passed! ====='
+            echo '[Swagslabs_DevOps] All tests passed!'
         }
         failure {
-            echo '===== [Swagslabs_DevOps] Tests failed. Check Allure Report ====='
+            echo '[Swagslabs_DevOps] Tests failed. Check Allure Report'
         }
     }
 }
