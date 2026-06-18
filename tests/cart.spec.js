@@ -137,7 +137,7 @@ test.describe('Cart Tests', () => {
       await expect(cartPage.pageTitle).toHaveText('Your Cart');
       await attachStepScreenshot(page, '03 - Cart page title verified');
     });
-  });
+  }); 
 
   test('TC26 - Verify product name in cart', async ({ page }) => {
       const loginPage = new LoginPage(page);
