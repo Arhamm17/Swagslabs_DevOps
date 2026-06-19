@@ -4,7 +4,7 @@ pipeline {
     environment {
         PROJECT_NAME   = 'Swagslabs_DevOps'
         ALLURE_RESULTS = 'allure-results'
-        ALLURE_REPORT  = 'allure-report' 
+        ALLURE_REPORT  = 'allure-report'
     }
 
     stages {
