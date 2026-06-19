@@ -15,7 +15,7 @@ pipeline {
             }
         }
 
-        stage('Build Test Runner Image') {
+        stage('Build Test Runner Image'){
             steps {
                 echo '[Swagslabs_DevOps] Building Docker image'
                 sh 'docker build -t swagslabs-test-runner .'
